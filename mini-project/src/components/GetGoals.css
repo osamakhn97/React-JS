@@ -1,0 +1,9 @@
+.UIG{
+    margin: 40px auto;
+    background-color: rgb(224, 15, 61);
+    text-align: center;
+    width: 50%;
+    padding: 20px;
+    border: 2px solid red;
+    border-radius:10px ;
+}
