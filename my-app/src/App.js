@@ -1,10 +1,9 @@
 // import logo from './logo.svg';
 import './App.css';
-import ExpenseItem from './components/ExpenseItem';
-
-
-function App() {
-  const exp =  [
+import {useState} from 'react';
+import Expenses from './components/Expenses';
+import NewExpense from './components/newExpanses/NewExpense.js';
+  const DUMMY =  [
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -25,15 +24,34 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+
+function App() {
+
+  const [newExp,setExp] = useState(DUMMY);
+  
+
+  const getExpenseHandler = (expense)=>{
+    // const newExpense = expense;
+    console.log(expense)
+    setExp((prevState)=>{
+      
+      
+      return [expense, ...prevState]
+    })
+    console.log(newExp)
+    
+    // console.log(newExpense);
+  }
   return (
     <div /* className="App"*/>
 
-      <h2>Lets get started</h2>
-      <p>This is also visible.</p>
-      <ExpenseItem title = {exp[0].title} amount={exp[0].amount} date ={exp[0].date}></ExpenseItem>
-      <ExpenseItem title = {exp[1].title} amount={exp[1].amount} date ={exp[1].date}></ExpenseItem>
-      <ExpenseItem title = {exp[2].title} amount={exp[2].amount} date ={exp[2].date}></ExpenseItem>
-      <ExpenseItem title = {exp[3].title} amount={exp[3].amount} date ={exp[3].date}></ExpenseItem>
+      <NewExpense getExpense = {getExpenseHandler}></NewExpense>
+     
+      <Expenses items = {newExp}/>
+
+
+
+    
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
