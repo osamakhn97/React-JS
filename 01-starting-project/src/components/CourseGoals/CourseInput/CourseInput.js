@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import Button from "../../UI/Button/Button";
 import styles from "./CourseInput.module.css";
+import ErrorModal from "../../ErrorModel.js";
+
 
 
 const CourseInput = (props) => {
@@ -23,8 +25,21 @@ const CourseInput = (props) => {
     }
     props.onAddGoal(enteredValue);
   };
+  const reset = () =>{
+    setStatus(true);
 
+  }
+
+  const errorModal =  !isValid && <ErrorModal
+  title = "Error Occured!"
+  desc = "Something went wrong!!!"
+  reset = {reset}
+  />;
+
+ 
   return (
+    <div>
+
     <form onSubmit={formSubmitHandler}>
       {/* <div className={`form-control ${!isValid ? 'invalid': ''}`}> */}
       <div className={`${styles['form-control']} ${!isValid ? styles.invalid: ''}`}>
@@ -34,8 +49,13 @@ const CourseInput = (props) => {
           onChange={goalInputChangeHandler}
         />
       </div>
-      <Button type="submit">Add Goal</Button>
+      <Button type="submit" >Add Goal</Button>
     </form>
+    {errorModal}
+
+   
+
+    </div>
   );
 };
 
